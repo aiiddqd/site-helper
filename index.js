@@ -2,36 +2,13 @@ const { Bot } = require("grammy");
 const dotenv = require("dotenv");
 const { Octokit } = require("octokit")
 const notion = require("./src/notion")
-// const { Client } = require("@notionhq/client")
-
 
 dotenv.config()
-
 
 const github = new Octokit({ auth: process.env.TOKEN_GITHUB })
 const bot = new Bot(process.env.BOTTOKEN)
 
-// notion.addItem('dd');
-// const databaseId = process.env.NOTION_DB
-// const notionClient = new Client({ auth: process.env.NOTION_KEY })
-// notion()
-// function notion(){
-//     notionClient.pages.create({
-//         parent: { 
-//             "type": "database_id",
-//             "database_id": databaseId
-//         },
-//         properties: {
-//             Name: {
-//                 title: [{ type: "text", text: { content: "sdfsdf" } }]
-//             }
-//         }
-//     })
-
-//     return true;
-
-// }
-
+console.log('hello world')
 
 // Handle the /start command.
 bot.command("start", (ctx) => {
@@ -39,12 +16,44 @@ bot.command("start", (ctx) => {
 });
 
 // Handle other messages.
-bot.on("message", (ctx) => {
-
+bot.on("message", async (ctx) => {
     const message = ctx.message
-    notion.addItem(message.text)
-    ctx.reply("added to notion!")
+    const parentMessage = ctx.message.reply_to_message || null
+
+    if(parentMessage === null){
+        ctx.reply("no content for add")
+        return;
+    }
+
+    children = prepareChildrenForPage(parentMessage)
+
+    const response = await notion.addItem(message.text, children)
+
+    ctx.reply("added to notion")
 });
+
+function prepareChildrenForPage(telegramMessage){
+
+    const template = [
+        {
+            "object": "block",
+            "paragraph": {
+                "rich_text": [
+                    {
+                        "text": {
+                            "content": telegramMessage.text
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+
+    console.log(telegramMessage.text)
+
+    return template;
+
+}
 
 bot.hears("ping", async (ctx) => {
     // `reply` is an alias for `sendMessage` in the same chat (see next section).
