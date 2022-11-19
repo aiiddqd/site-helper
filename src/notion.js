@@ -9,7 +9,7 @@ const notionClient = new Client({ auth: process.env.NOTION_KEY })
 
 async function addItem(title, children) {
 
-    console.log(title, children)
+    // console.log(title, children)
 
     try {
         const response = await notionClient.pages.create({
