@@ -1,8 +1,8 @@
 const { Bot } = require("grammy");
 const dotenv = require("dotenv");
-const { Octokit } = require("octokit");
-// import notion from "./src/notion";
-const { Client } = require("@notionhq/client")
+const { Octokit } = require("octokit")
+const notion = require("./src/notion")
+// const { Client } = require("@notionhq/client")
 
 
 dotenv.config()
@@ -11,9 +11,9 @@ dotenv.config()
 const github = new Octokit({ auth: process.env.TOKEN_GITHUB })
 const bot = new Bot(process.env.BOTTOKEN)
 
-
+// notion.addItem('dd');
 // const databaseId = process.env.NOTION_DB
-const notionClient = new Client({ auth: process.env.NOTION_KEY })
+// const notionClient = new Client({ auth: process.env.NOTION_KEY })
 // notion()
 // function notion(){
 //     notionClient.pages.create({
@@ -35,16 +35,24 @@ const notionClient = new Client({ auth: process.env.NOTION_KEY })
 
 // Handle the /start command.
 bot.command("start", (ctx) => {
-
-
     ctx.reply("Welcome! Up and running.")
 });
+
 // Handle other messages.
 bot.on("message", (ctx) => {
 
-    ctx.reply("Got another message!")
+    const message = ctx.message
+    notion.addItem(message.text)
+    ctx.reply("added to notion!")
 });
 
+bot.hears("ping", async (ctx) => {
+    // `reply` is an alias for `sendMessage` in the same chat (see next section).
+    await ctx.reply("pong", {
+      // `reply_to_message_id` specifies the actual reply feature.
+      reply_to_message_id: ctx.msg.message_id,
+    });
+});
 
 
 // notion.pages.create({

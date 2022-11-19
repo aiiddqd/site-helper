@@ -3,34 +3,27 @@ const { Client } = require("@notionhq/client")
 
 dotenv.config()
 
-const notionClient = new Client({ auth: process.env.NOTION_KEY })
 const databaseId = process.env.NOTION_DB
+const notionClient = new Client({ auth: process.env.NOTION_KEY })
 
-// notion()
+const notion = {
 
-function notion(){
-
-    function createPage(){
-        const title = 'test'
-        const data = 
-    
+    addItem(title){
         notionClient.pages.create({
             parent: { 
-                database_id: databaseId
+                "type": "database_id",
+                "database_id": databaseId
             },
             properties: {
-                "Name": {
-                    "title": { 
-                        "text": { content: "fssdfsdf" } 
-                    }
+                Name: {
+                    title: [{ type: "text", text: { content: title } }]
                 }
             }
         })
-    
-        return true;
-    
+
+        return true
     }
-    
+
 }
 
 module.exports = notion
