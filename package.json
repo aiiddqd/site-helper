@@ -3,6 +3,7 @@
     "dev": "npx nodemon index.js",
     "start": "node index.js"
   },
+  "main": "index.js",
   "dependencies": {
     "@notionhq/client": "^2.2.2",
     "dotenv": "^16.0.3",
