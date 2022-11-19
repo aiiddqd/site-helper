@@ -1,10 +1,6 @@
 {
   "scripts": {
-    "build": "tsc"
-  },
-  "devDependencies": {
-    "@types/node": "^18.11.9",
-    "typescript": "^4.9.3"
+    "start": "node bot.js"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.2",

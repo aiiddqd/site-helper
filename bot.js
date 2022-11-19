@@ -1,23 +1,77 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const grammy_1 = require("grammy");
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
-let key = process.env.BOTTOKEN || '';
-// console.log(key);
-// Create an instance of the `Bot` class and pass your authentication token to it.
-const bot = new grammy_1.Bot(key); // <-- put your authentication token between the ""
-// You can now register listeners on your bot object `bot`.
-// grammY will call the listeners when users send messages to your bot.
+const Bot = require("grammy");
+const dotenv = require("dotenv");
+const Octokit = require("octokit");
+// import notion from "./src/notion";
+const Client = require("@notionhq/client")
+
+dotenv.config()
+
+const bot = new Bot(process.env.BOTTOKEN || '')
+const github = new Octokit({ auth: process.env.TOKEN_GITHUB })
+const notionClient = new Client({ auth: process.env.NOTION_KEY })
+const databaseId = process.env.NOTION_DB
+
+notion()
+function notion(){
+    const title = 'test'
+    const data = 
+
+    notionClient.pages.create({
+        parent: { 
+            database_id: databaseId
+        },
+        properties: {
+            "Name": {
+                "title": { 
+                    "text": { content: "fssdfsdf" } 
+                }
+            }
+        }
+    })
+
+    return true;
+
+}
+
+
 // Handle the /start command.
-bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
+bot.command("start", (ctx) => {
+
+
+    ctx.reply("Welcome! Up and running.")
+});
 // Handle other messages.
-bot.on("message", (ctx) => ctx.reply("Got another message!"));
+bot.on("message", (ctx) => {
+
+    ctx.reply("Got another message!")
+});
+
+
+
+// notion.pages.create({
+//     parent: { database_id: databaseId },
+//     properties: getPropertiesFromIssue(issue),
+//   })
+
+
 // Now that you specified how to handle messages, you can start your bot.
 // This will connect to the Telegram servers and wait for messages.
+
 // Start the bot.
 bot.start();
+
 // export DEBUG="grammy*"
+// async function createPages(pagesToCreate) {
+//     const pagesToCreateChunks = _.chunk(pagesToCreate, OPERATION_BATCH_SIZE)
+//     for (const pagesToCreateBatch of pagesToCreateChunks) {
+//       await Promise.all(
+//         pagesToCreateBatch.map(issue =>
+//           notion.pages.create({
+//             parent: { database_id: databaseId },
+//             properties: getPropertiesFromIssue(issue),
+//           })
+//         )
+//       )
+//       console.log(`Completed batch size: ${pagesToCreateBatch.length}`)
+//     }
+// }
