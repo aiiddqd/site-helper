@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node bot.js"
+    "start": "node app.js"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.2",
