@@ -36,4 +36,27 @@ async function addItem(title, children) {
     }
 }
 
-exports.addItem = addItem
+function prepareChildrenForPage(telegramMessage){
+
+    const template = [
+        {
+            "object": "block",
+            "paragraph": {
+                "rich_text": [
+                    {
+                        "text": {
+                            "content": telegramMessage.text
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+
+    // console.log(telegramMessage.text)
+
+    return template;
+
+}
+
+module.exports = { addItem, prepareChildrenForPage }
