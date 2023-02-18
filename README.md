@@ -1,3 +1,3 @@
-# Helper for WordPress
+# SiteHelper for WordPress
 
 
