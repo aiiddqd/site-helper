@@ -12,19 +12,19 @@ namespace aaHelper\Optimizatron {
             $id = 'enable_optimizatron',
             $title = 'Optimizatron',
             $callback = function () {
-                $value = \ReAgg\Config\get()['enable_optimizatron'] ?? null;
-                $name = sprintf('%s[%s]', \ReAgg\Config\OPTION_KEY, 'enable_optimizatron');
+                $value = \SiteHelper\Config\get()['enable_optimizatron'] ?? null;
+                $name = sprintf('%s[%s]', \SiteHelper\Config\OPTION_KEY, 'enable_optimizatron');
                 printf('<input type="checkbox" name="%s" value="1" %s />', $name, checked(1, $value, false));
             }
             ,
-            \ReAgg\Config\OPTION_PAGE
+            \SiteHelper\Config\OPTION_PAGE
         );
 
     });
 
     function is_enable()
     {
-        return \ReAgg\Config\get()['enable_optimizatron'] ?? false;
+        return \SiteHelper\Config\get()['enable_optimizatron'] ?? false;
     }
 
     function frontend()

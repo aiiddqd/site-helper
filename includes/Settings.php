@@ -1,6 +1,6 @@
 <?php 
 
-namespace aaHelper\Config {
+namespace SiteHelper\Config {
     
     const OPTION_KEY = 'sitehelper_config';
     const OPTION_PAGE = 'sitehelper-settings';
