@@ -3,11 +3,11 @@
 * Plugin Name: SiteHelper
 * Description: Site Helper for WordPress - additional options, tools, customizations, optimizations
 * Author: uptimizt
-* GitHub Plugin URI: https://github.com/uptimizt/aa-helper
+* GitHub Plugin URI: https://github.com/uptimizt/aa-site-helper
 * Version: 0.230218
 */
 
-namespace aaHelper;
+namespace AA\SiteHelper;
 
 $files = glob(__DIR__ . '/includes/*.php');
 foreach ($files as $file) {
