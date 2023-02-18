@@ -1,6 +1,6 @@
 <?php
 /*
-* Plugin Name: SiteHelper
+* Plugin Name: @ SiteHelper
 * Description: Site Helper for WordPress - additional options, tools, customizations, optimizations
 * Author: uptimizt
 * GitHub Plugin URI: https://github.com/uptimizt/aa-site-helper
