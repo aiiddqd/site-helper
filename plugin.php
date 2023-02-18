@@ -7,7 +7,7 @@
 * Version: 0.230218
 */
 
-namespace ReAgg\LazyBlocks;
+namespace aaHelper;
 
 $files = glob(__DIR__ . '/includes/*.php');
 foreach ($files as $file) {
