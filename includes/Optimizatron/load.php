@@ -1,6 +1,6 @@
 <?php
 
-namespace aaHelper\Optimizatron {
+namespace SiteHelper\Optimizatron {
 
 
     add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\frontend');

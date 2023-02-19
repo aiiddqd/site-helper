@@ -7,7 +7,7 @@
 * Version: 0.230218
 */
 
-namespace AA\SiteHelper;
+namespace SiteHelper;
 
 $files = glob(__DIR__ . '/includes/*.php');
 foreach ($files as $file) {
