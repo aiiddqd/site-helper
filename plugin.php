@@ -13,3 +13,8 @@ $files = glob(__DIR__ . '/includes/*.php');
 foreach ($files as $file) {
   require_once $file;
 }
+
+$files = glob(__DIR__ . '/includes/*/config.php');
+foreach ($files as $file) {
+  require_once $file;
+}
