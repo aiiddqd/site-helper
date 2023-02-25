@@ -5,11 +5,12 @@ namespace SiteHelper\AdminBarSimplification {
     const SETTING_KEY = 'admin_bar_simplification';
     const SETTING_TITLE = 'Admin Bar Simplification';
 
+    add_action('admin_init', __NAMESPACE__ . '\\add_setting');
+
     add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\frontend');
     add_action('admin_bar_menu', __NAMESPACE__ . '\clear_titles', 999);
 
 
-    add_action('admin_init', __NAMESPACE__ . '\\add_setting');
 
     function add_setting(){
 
