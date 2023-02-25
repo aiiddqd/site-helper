@@ -7,7 +7,7 @@ namespace SiteHelper\Config {
 
     add_action('admin_init', function(){
         register_setting( OPTION_PAGE, OPTION_KEY );
-    });
+    }, 5);
 
 
 
