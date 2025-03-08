@@ -4,7 +4,7 @@
  * Description: Site Helper for WordPress - additional options, tools, customizations, optimizations
  * Author: uptimizt
  * GitHub Plugin URI: https://github.com/uptimizt/site-helper
- * Version: 0.230225
+ * Version: 0.240308
  */
 
 namespace SiteHelper;
