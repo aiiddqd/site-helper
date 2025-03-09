@@ -11,7 +11,7 @@ class Commander
 
     public static function init()
     {
-        add_action('plugins_loaded', function(){
+        add_action('init', function(){
             self::$urlSearch = rest_url('wp/v2/search/');
         });
         add_shortcode('commander', [__CLASS__, 'shortcode']);
