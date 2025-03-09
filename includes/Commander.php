@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace SiteHelper;
 
 Commander::init();
 
@@ -11,7 +11,9 @@ class Commander
 
     public static function init()
     {
-        self::$urlSearch = rest_url('wp/v2/search');
+        add_action('init', function(){
+            self::$urlSearch = rest_url('wp/v2/search/');
+        });
         add_shortcode('commander', [__CLASS__, 'shortcode']);
         add_action('wp_enqueue_scripts', [__CLASS__, 'add_base_js_from_cdn']);
         add_action('wp_enqueue_scripts', [__CLASS__, 'add_base_css_from_cdn']);
